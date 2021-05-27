@@ -148,25 +148,4 @@ def hog(img):
     final=normlaition(lst,sum1)
     return final    
 
-(train_X, train_y), (test_X, test_y) = mnist.load_data()
-feature_vec=list()
-featureVectorDataFrame=pandas.DataFrame()
-testvec=pandas.DataFrame()
-for i in range(8000):
-        img=train_X[i]
-        img=cv.resize(img,(32,32))
-        res=hog(img)
-        feature_vec.append(res)
-        
-  
 
-model = LinearSVC()
-
-model.fit(feature_vec, train_y[0:8000])
-
-# Evaluate the classifier
-print(" Evaluating classifier on test data ...")
-predictions = model.predict(feature_vec)
-
-print("\nAccuracy Score : ",accuracy_score(test_y[0:8000], predictions), "\n")
-#joblib.dump(model, "C:/Users/Mohamed/Desktop/hog_v1.npy")
